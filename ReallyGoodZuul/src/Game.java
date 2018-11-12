@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room previousRoom;
         
     /**
      * Create the game and initialise its internal map.
@@ -152,6 +153,9 @@ public class Game
         else if(commandWord.equals("look")) {
             printLocationInfo();
         }
+        else if(commandWord.equals("back")) {
+            goBack(command);
+        }
 
         return wantToQuit;
     }
@@ -193,6 +197,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            previousRoom = currentRoom;
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -212,5 +217,17 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+    private void goBack(Command command)
+    {   
+        if(command.hasSecondWord() || previousRoom == null) 
+        {
+            System.out.println("Back where?");
+            return;
+        }
+        Room room = currentRoom;
+        currentRoom = previousRoom;
+        previousRoom = room;
+        printLocationInfo();
     }
 }
