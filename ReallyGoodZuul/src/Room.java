@@ -118,5 +118,26 @@ public class Room
     {
         items.add(item);
     }
-
+    
+    public Item getItem(String itemName)
+    {
+        for(Item roomItem: items)
+        {
+            if(roomItem.getName().equals(itemName))
+            {
+                return roomItem;
+            }
+        }
+        return null;
+    }
+    public void removeItem(String name)
+    {
+        for(int i =0; i<items.size();i++)
+        {
+            if(items.get(i).getName().equals(name))
+            {
+                items.remove(i);
+            }
+        }
+    }
 }
