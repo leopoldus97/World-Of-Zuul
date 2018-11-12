@@ -81,8 +81,8 @@ public class Game
         
         Item bed, luxuriousPrisonerChest;
         
-        bed = new Item("well-groomed bed");
-        luxuriousPrisonerChest = new Item("locked chest");
+        bed = new Item("well-groomed bed", 20000);
+        luxuriousPrisonerChest = new Item("locked chest", 10000);
         
         luxuriousCell.addItem(bed);
         luxuriousCell.addItem(luxuriousPrisonerChest);
