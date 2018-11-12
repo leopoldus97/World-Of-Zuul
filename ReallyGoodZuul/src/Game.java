@@ -46,7 +46,7 @@ public class Game
         leftCorridor = new Room("in the left wing of the corridor");
         emptyCellCentral = new Room("in the empty cell");
         emptyCellNorth = new Room("in the empty cell");
-        luxuriousCell = new Room("in cell with a bed");
+        luxuriousCell = new Room("in a neat cell");
         graveyard = new Room("in a room full of skeletons");
         exitRoom = new Room("in a room with locked doors");
         guardRoom = new Room("in a guard room");
@@ -77,6 +77,11 @@ public class Game
         guardRoom.setExit("east", leftCorridor);
         armory.setExit("north", leftCorridor);
         exitRoom.setExit("north", rightCorridor);
+        
+        Item bed;
+        
+        bed = new Item("well-groomed bed");
+        luxuriousCell.addItem(bed);
 
         currentRoom = startingCell;  // start game outside
     }

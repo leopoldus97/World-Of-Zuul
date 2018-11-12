@@ -83,6 +83,19 @@ public class Room
         return description;
     }
     
+    public String getItemsString()
+    {
+        if(item == null)
+        {
+            return "No items inside the room";
+        }
+        else
+        {
+            String itemsString = "Items inside the room: " + item.getDescription();
+            return itemsString;
+        }
+    }
+    
     /**
     * Return a long description of this room, of the form:
     * You are in the kitchen.
@@ -91,7 +104,7 @@ public class Room
     */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getItemsString() + ".\n" + getExitString();
     }
     public void addItem(Item item)
     {
