@@ -9,5 +9,20 @@
  * @author schemabuoi
  */
 public class Player {
+    private Room currentRoom;
+    private Room previousRoom;
+    
+     public Room getCurrentRoom() {
+        return currentRoom;
+    }
+     public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+     public Room getPreviousRoom() {
+        return previousRoom;
+    }
+     public void setPreviousRoom(Room previousRoom) {
+        this.previousRoom = previousRoom;
+    }
     
 }

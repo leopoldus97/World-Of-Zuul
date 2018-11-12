@@ -18,14 +18,14 @@
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
-    private Room previousRoom;
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
+        player = new Player();
         createRooms();
         parser = new Parser();
     }
@@ -87,7 +87,7 @@ public class Game
         luxuriousCell.addItem(bed);
         luxuriousCell.addItem(luxuriousPrisonerChest);
 
-        currentRoom = startingCell;  // start game outside
+        player.setCurrentRoom(startingCell);  // start game outside
     }
 
     /**
@@ -123,7 +123,7 @@ public class Game
     
     private void printLocationInfo()
     {
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
     /**
@@ -191,14 +191,14 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
-            previousRoom = currentRoom;
-            currentRoom = nextRoom;
+            player.setPreviousRoom(player.getCurrentRoom());
+            player.setCurrentRoom(nextRoom);
             printLocationInfo();
         }
     }
@@ -220,14 +220,14 @@ public class Game
     }
     private void goBack(Command command)
     {   
-        if(command.hasSecondWord() || previousRoom == null) 
+        if(command.hasSecondWord() || player.getPreviousRoom() == null) 
         {
             System.out.println("Back where?");
             return;
         }
-        Room room = currentRoom;
-        currentRoom = previousRoom;
-        previousRoom = room;
+        Room room = player.getCurrentRoom();
+        player.setCurrentRoom(player.getPreviousRoom());
+        player.setPreviousRoom(room);
         printLocationInfo();
     }
 }
