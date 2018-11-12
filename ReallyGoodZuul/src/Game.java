@@ -156,6 +156,12 @@ public class Game
         else if(commandWord.equals("back")) {
             goBack(command);
         }
+        else if(commandWord.equals("take")) {
+            takeItem(command);
+        }
+        else if(commandWord.equals("drop")) {
+            dropItem(command);
+        }
 
         return wantToQuit;
     }
@@ -176,6 +182,53 @@ public class Game
         System.out.println(parser.getCommands());
     }
 
+    private void takeItem(Command command)
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            System.out.println("Take what?");
+            return;
+        }
+        Item roomsItem = player.getCurrentRoom().getItem(command.getSecondWord());
+        if(roomsItem == null)
+        {
+            System.out.println("There is no such item inside this room");
+            return;
+        }
+        else if(!roomsItem.isPickeable())
+        {
+            System.out.println("Cannot pick up this item");
+            return;
+        }
+        else
+        {
+            player.addItem(roomsItem);
+            player.getCurrentRoom().removeItem(roomsItem.getName());
+            System.out.println("You picked up " + roomsItem.getName());
+        }     
+    }
+    
+    private void dropItem(Command command)
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            System.out.println("Drop what?");
+            return;
+        }
+        Item usersItem = player.getItem(command.getSecondWord());
+        if(usersItem == null)
+        {
+            System.out.println("There is no such item in your inventory");
+            return;
+        }
+        else
+        {
+            player.removeItem(usersItem.getName());
+            player.getCurrentRoom().addItem(usersItem);
+            System.out.println("You dropped " + usersItem.getName());
+        }
+    }
+    
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
