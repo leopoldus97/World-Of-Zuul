@@ -20,6 +20,7 @@ public class Room
 {
     private String description;
     private HashMap<String,Room> exits;
+    private Item item;
 
     /**
      * Create a room described "description". Initially, it has
@@ -91,6 +92,10 @@ public class Room
     public String getLongDescription()
     {
         return "You are " + description + ".\n" + getExitString();
+    }
+    public void addItem(Item item)
+    {
+        this.item = item;
     }
 
 }
