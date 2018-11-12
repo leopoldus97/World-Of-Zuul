@@ -15,18 +15,30 @@
  */
 public class Item {
     
+    private String name;
     private String description;
     private int weight;
+    private boolean canBePickedUp;
     
-     public Item(String description, int weight)
+     public Item(String name, String description, int weight, boolean canBePickedUp)
     {
+        this.name = name;
         this.description = description;
         this.weight = weight;
+        this.canBePickedUp = canBePickedUp;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isPickeable() {
+        return canBePickedUp;
     }
     public String getDescription() {
         return description;
     }
-
+    
     public int getWeight() {
         return weight;
     }

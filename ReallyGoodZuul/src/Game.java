@@ -81,8 +81,8 @@ public class Game
         
         Item bed, diary;
         
-        bed = new Item("well-groomed bed", 20000);
-        diary = new Item("old and dusty diary bound in gray leather", 10000);
+        bed = new Item("bed", "well-groomed bed", 20000, false);
+        diary = new Item("diary", "old and dusty diary bound in gray leather", 10000, true);
         
         luxuriousCell.addItem(bed);
         luxuriousCell.addItem(diary);
