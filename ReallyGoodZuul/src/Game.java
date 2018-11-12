@@ -53,19 +53,30 @@ public class Game
         armory = new Room("in an armory");
         
         // initialise room exits
-        startingCell.setExits(null, centralCorridor, null, null);
-        centralCorridor.setExits(northernCorridor, emptyCellCentral, southernCorridor, startingCell);
-        emptyCellCentral.setExits(null, null, null, centralCorridor);
-        northernCorridor.setExits(graveyard, emptyCellNorth, centralCorridor, luxuriousCell);
-        luxuriousCell.setExits(null, northernCorridor, null, null);
-        emptyCellNorth.setExits(null, null, null, northernCorridor);
-        graveyard.setExits(null, null, northernCorridor, null);
-        southernCorridor.setExits(centralCorridor, rightCorridor, null, leftCorridor);
-        leftCorridor.setExits(null, southernCorridor, armory, guardRoom);
-        rightCorridor.setExits(null, null, exitRoom, southernCorridor);
-        guardRoom.setExits(null, leftCorridor, null, null);
-        armory.setExits(leftCorridor, null,null,null);
-        exitRoom.setExits(rightCorridor,null,null,null);
+        startingCell.setExit("east", centralCorridor);
+        centralCorridor.setExit("north", northernCorridor);
+        centralCorridor.setExit("east", emptyCellCentral);
+        centralCorridor.setExit("south", southernCorridor);
+        centralCorridor.setExit("west", startingCell);
+        emptyCellCentral.setExit("west", centralCorridor);
+        northernCorridor.setExit("north", graveyard);
+        northernCorridor.setExit("east", emptyCellNorth);
+        northernCorridor.setExit("south", centralCorridor);
+        northernCorridor.setExit("west", luxuriousCell);
+        luxuriousCell.setExit("east", northernCorridor);
+        emptyCellNorth.setExit("west", northernCorridor);
+        graveyard.setExit("south", northernCorridor);
+        southernCorridor.setExit("north", centralCorridor);
+        southernCorridor.setExit("east", rightCorridor);
+        southernCorridor.setExit("west", leftCorridor);
+        leftCorridor.setExit("east", southernCorridor);
+        leftCorridor.setExit("south", armory);
+        leftCorridor.setExit("west", guardRoom);
+        rightCorridor.setExit("south", exitRoom);
+        rightCorridor.setExit("west", southernCorridor);
+        guardRoom.setExit("east", leftCorridor);
+        armory.setExit("north", leftCorridor);
+        exitRoom.setExit("north", rightCorridor);
 
         currentRoom = startingCell;  // start game outside
     }

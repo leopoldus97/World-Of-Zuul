@@ -1,3 +1,6 @@
+
+import java.util.HashMap;
+
 /**
  * Class Room - a room in an adventure game.
  *
@@ -15,10 +18,7 @@
 public class Room 
 {
     private String description;
-    private Room northExit;
-    private Room southExit;
-    private Room eastExit;
-    private Room westExit;
+    private HashMap<String,Room> exits;
 
     /**
      * Create a room described "description". Initially, it has
@@ -29,6 +29,7 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
+        exits = new HashMap<String,Room>();
     }
 
     /**
@@ -39,55 +40,32 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
+    public void setExit(String direction, Room neighbor) 
     {
-        if(north != null)
-            northExit = north;
-        if(east != null)
-            eastExit = east;
-        if(south != null)
-            southExit = south;
-        if(west != null)
-            westExit = west;
+        exits.put(direction, neighbor);
     }
 
     public Room getExit(String direction)
     {
-        if(direction.equals("north"))
-        {
-            return northExit;
-        }
-        if(direction.equals("east"))
-        {
-            return eastExit;
-        }
-        if(direction.equals("south"))
-        {
-            return southExit;
-        }
-        if(direction.equals("west"))
-        {
-            return westExit;
-        }
-        return null;
+        return exits.get(direction);
     }
     
     public String getExitString()
     {
         String exitString = "Exits: ";
-        if(northExit != null) 
+        if(exits.get("north") != null)  
         {
             exitString += "north ";
         }
-        if(eastExit != null) 
+        if(exits.get("east") != null) 
         {
             exitString += "east ";
         }
-        if(southExit != null)
+        if(exits.get("south") != null)
         {
             exitString += "south ";
         }
-        if(westExit != null)
+        if(exits.get("west") != null)
         {
             exitString += "west ";
         }
