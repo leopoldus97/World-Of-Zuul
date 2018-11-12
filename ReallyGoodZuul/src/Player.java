@@ -63,4 +63,22 @@ public class Player {
         return null;
     }
     
+    public String getItemsString()
+    {
+        if(items.size() == 0)
+        {
+            return "Your inventory is empty";
+        }
+        else
+        {
+            String itemsString = "Items inside your inventory: ";
+            for(Item item: items)
+            {
+                itemsString += item.getDescription() + ", ";
+            }
+            itemsString = itemsString.substring(0,itemsString.length()-2);
+            return itemsString;
+        }
+    }
+    
 }

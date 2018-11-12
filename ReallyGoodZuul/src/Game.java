@@ -162,6 +162,9 @@ public class Game
         else if(commandWord.equals("drop")) {
             dropItem(command);
         }
+        else if(commandWord.equals("items")) {
+            printPlayerItems();
+        }
 
         return wantToQuit;
     }
@@ -180,6 +183,11 @@ public class Game
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println(parser.getCommands());
+    }
+    
+    private void printPlayerItems()
+    {
+        System.out.println(player.getItemsString());
     }
 
     private void takeItem(Command command)
