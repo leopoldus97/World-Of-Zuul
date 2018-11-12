@@ -79,13 +79,13 @@ public class Game
         armory.setExit("north", leftCorridor);
         exitRoom.setExit("north", rightCorridor);
         
-        Item bed, luxuriousPrisonerChest;
+        Item bed, diary;
         
         bed = new Item("well-groomed bed", 20000);
-        luxuriousPrisonerChest = new Item("locked chest", 10000);
+        diary = new Item("old and dusty diary bound in gray leather", 10000);
         
         luxuriousCell.addItem(bed);
-        luxuriousCell.addItem(luxuriousPrisonerChest);
+        luxuriousCell.addItem(diary);
 
         player.setCurrentRoom(startingCell);  // start game outside
     }
