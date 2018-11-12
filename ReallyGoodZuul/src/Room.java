@@ -1,5 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,7 +22,7 @@ public class Room
 {
     private String description;
     private HashMap<String,Room> exits;
-    private Item item;
+    private List<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -32,6 +34,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String,Room>();
+        items = new ArrayList();
     }
 
     /**
@@ -85,13 +88,18 @@ public class Room
     
     public String getItemsString()
     {
-        if(item == null)
+        if(items.size() == 0)
         {
             return "No items inside the room";
         }
         else
         {
-            String itemsString = "Items inside the room: " + item.getDescription();
+            String itemsString = "Items inside the room: ";
+            for(Item item: items)
+            {
+                itemsString += item.getDescription() + ", ";
+            }
+            itemsString = itemsString.substring(0,itemsString.length()-2);
             return itemsString;
         }
     }
@@ -108,7 +116,7 @@ public class Room
     }
     public void addItem(Item item)
     {
-        this.item = item;
+        items.add(item);
     }
 
 }
