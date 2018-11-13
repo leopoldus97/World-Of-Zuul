@@ -83,6 +83,7 @@ public class Player {
                 itemsString += item.getDescription() + ", ";
             }
             itemsString = itemsString.substring(0,itemsString.length()-2);
+            itemsString += "\nTotal weight: " + getItemsWeight();
             return itemsString;
         }
     }
