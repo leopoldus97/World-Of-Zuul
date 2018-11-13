@@ -207,6 +207,10 @@ public class Game
         {
             System.out.println("Cannot pick up this item");
         }
+        else if(player.getItemsWeight() + roomsItem.getWeight() > player.getMaxWeight())
+        {
+            System.out.println("This item is too heavy for you to carry");
+        }
         else
         {
             player.addItem(roomsItem);

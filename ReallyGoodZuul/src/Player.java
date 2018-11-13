@@ -16,10 +16,12 @@ public class Player {
     private Room currentRoom;
     private Room previousRoom;
     private List<Item> items;
-    
+    private int maxWeight;
+
     public Player()
     {
         items = new ArrayList();
+        maxWeight = 20000;
     }
     
      public Room getCurrentRoom() {
@@ -35,6 +37,10 @@ public class Player {
         this.previousRoom = previousRoom;
     }
      
+    public int getMaxWeight() {
+        return maxWeight;
+    }
+         
      public void addItem(Item item)
     {
         items.add(item);
@@ -79,6 +85,16 @@ public class Player {
             itemsString = itemsString.substring(0,itemsString.length()-2);
             return itemsString;
         }
+    }
+    
+    public int getItemsWeight()
+    {
+        int weight = 0;
+        for(Item item: items)
+        {
+            weight += item.getWeight();
+        }
+        return weight;
     }
     
 }
