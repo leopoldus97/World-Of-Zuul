@@ -203,10 +203,9 @@ public class Game
             System.out.println("There is no such item inside this room");
             return;
         }
-        else if(!roomsItem.isPickeable())
+        if(!roomsItem.isPickeable())
         {
             System.out.println("Cannot pick up this item");
-            return;
         }
         else
         {
@@ -227,7 +226,6 @@ public class Game
         if(usersItem == null)
         {
             System.out.println("There is no such item in your inventory");
-            return;
         }
         else
         {
